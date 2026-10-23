@@ -1,6 +1,6 @@
 # GENESIS 001 — Five organs, one held table
 
-**Experimental / DRAFT / HOLD.** This is an **actual standalone Node.js read-only projector** plus an **optional native cold-verification bridge**. It is **not** a five-way native integration, booted operating system, consent engine, software scheduler, or new sovereign authority.
+**Experimental / DRAFT / HOLD.** This is an **actual standalone Node.js read-only projector** plus an **optional native cold-verification bridge**. It is an **exact-scope, five-project native CI rehearsal plus a read-only user-facing projection**, not a generic five-way compatibility runtime, booted operating system, consent engine, software scheduler, or new sovereign authority.
 
 ## Why this particular cut?
 
@@ -12,7 +12,7 @@ The existing experimental [CANNON STACK² 018](https://github.com/the-static-col
 
 CANNON owns exact Git-object verification, independent donor calls, and cold replay. TABLElogic should **consume CANNON's public-inspection artifact after CANNON verifies it**, not re-implement CANNON's Git and crypto checks or interpret the proposals as executable commands.
 
-The *fifth* organ, STATIC OS, owns the eventual habitable runtime. GENESIS 001 provides a **portable, offline, read-only HOUSE JSON projection and browser viewer** designed as a candidate door. It is **not yet a native STATIC OS InstrumentAdapterV0**.
+The *fifth* organ, STATIC OS, owns the eventual habitable runtime. GENESIS 001 supplies a **portable, offline, read-only HOUSE JSON projection and browser viewer**, and also runs an **external TABLElogic adapter against the original STATIC OS InstrumentHost** in isolated CI. The native host actually performs `install → observe → select` over the TABLElogic HOUSE file. The adapter is **not installed in the STATIC OS distribution**, and no OS image was booted.
 
 The table draws a circle **around independently owned parts**. The circle does not grant new authority to the parts or to itself.
 
@@ -24,9 +24,9 @@ The table draws a circle **around independently owned parts**. The circle does n
 | CANNON | [STACK² 018 native verifier](https://github.com/the-static-collective/CANNON/blob/experiment/stack-squared-018-native-floor/docs/STACK-SQUARED-018.md) | Experimental branch, not automatic CANON selection |
 | GHoT | [reference_node.py](https://github.com/the-static-collective/GHoT), exact native source commit `e35dd470384d864b7b0b629a68dad570875a7df0` | Local `system.hash` only; no signed owner ACT |
 | reLATTE | [R14 opaque round trip](https://github.com/the-static-collective/reLATTE), exact native source commit `dcc8cdca84c440aa4294134f020fb7095bf87f24` | Signed RECEIVE + R3_HOLD; receiver has not admitted any effect |
-| STATIC OS | [Instrument Host 001](https://github.com/the-static-collective/static-os/pull/54), experimental `integration/instrument-host-001` branch | Reference interface only; TABLElogic is not an installed instrument; no ISO boot |
+| STATIC OS | [Instrument Host 001](https://github.com/the-static-collective/static-os/pull/54), exact tested commit `8d3de9160a1f1fdffc6741712a112d34fbadf7e3` | Original `InstrumentHost` runs external read-only TABLElogic adapter in CI; no installed OS or boot |
 
-This implementation **does not fetch or execute donor code itself**. CANNON's own verifier runs only on exact, locally supplied checkouts. TABLElogic calls its fixed CLI in **verify** mode, not **run**, through `execFileSync` without shell expansion. The original CANNON source branch must itself be independently selected and exact-SHA pinned for any production-grade trust claim.
+The TABLElogic Node CLI **does not automatically fetch or execute donor work**. The dedicated GitHub Actions rehearsal explicitly runs the original CANNON PlanZ→GHoT→reLATTE ceremony, cold-verifies through CANNON's own native code, and then runs the original STATIC OS host against the resulting read-only view. The CLI invokes CANNON in fixed **verify** mode, not **run**, through `execFileSync` without shell expansion. Native STATIC OS is called in a separately scoped, read-only Python test. The original CANNON experimental source branch must itself be independently selected and exact-SHA pinned for any production-grade trust claim.
 
 ## Run the synthetic, offline TABLElogic table
 
@@ -76,10 +76,25 @@ The `roots.json` mapping must name exact original checkout directories under:
 
 If CANNON original verification fails, TABLElogic **fails closed** and does not write its HOUSE file. The generated view marks CANNON as `NATIVE_COLD_VERIFIED` **only after that successful invocation**. Re-importing the view elsewhere does not re-prove that claim; the recipient must run the native source verifier again.
 
+## Native STATIC OS donor-host rehearsal
+
+Once `/tmp/house-native-018.json` has been generated and native-verified using the original CANNON CLI, the original STATIC OS host can be exercised on that exact file:
+
+```sh
+python3 -B tools/static_os_native_probe.py \
+  --house /tmp/house-native-018.json \
+  --static-os-root /path/to/static-os-at-8d3de9160a1f1fdffc6741712a112d34fbadf7e3 \
+  --session /tmp/tablelogic-original-os-session
+```
+
+The adapter implements the original `InstrumentAdapterV0` protocol, uses the original host and original ELEVEN-HEAP address machinery, reads exactly five source-backed roles, and selects them at dial endpoints. It never requests native owner ADMIT, records no external act, and cannot transmit. Its source view digest is checked, but it **does not itself independently verify the original CANNON / reLATTE signatures**; that preceding step remains essential.
+
+**Verified CI evidence, 2026-10-23:** [TABLElogic native five-owner rehearsal, successful run #39964953115](https://github.com/the-static-collective/TABLElogic/actions/runs/39964953115). It ran original planZ, CANNON, GHoT, reLATTE, and the actual STATIC OS InstrumentHost. The `tablelogic-house-001-native-held` artifact contains the redacted CANNON inspection, the TABLElogic HOUSE view, and the original STATIC OS host probe receipt. The job's local scope does not prove deployment, independent community consent, or an installed/booted operating system.
+
 ## What TABLElogic really proves in Genesis 001
 
 - Deterministic reconstruction of one read-only, five-organ *interpretation* of a redacted original report.
-- Explicit separation between unselected planZ proposals, GHoT bounded hash work, reLATTE signed HOLD, and a STATIC OS-shaped display.
+- Explicit separation between unselected planZ proposals, GHoT bounded hash work, reLATTE signed HOLD, and a native STATIC OS read-only observation/selection session.
 - Zero inferred human consent, zero external effect, zero created grants.
 - A local view digest and hostile tests that refuse forged `ADMIT`, extra effects, source swaps, mutation of interpretation, and auto-authorized plans.
 - Create-only local JSON file output. The reader is offline and powerless.
@@ -88,7 +103,7 @@ If CANNON original verification fails, TABLElogic **fails closed** and does not 
 
 ## What would make the next crossing real?
 
-**GENESIS 002:** have the owning STATIC OS implementation register an actual `InstrumentAdapterV0` whose `describe / observe / select` methods expose this **read-only** TABLElogic HOUSE view. Let STATIC OS own session lifecycle, control history, true source-byte binding, independent local admission, and cold re-entry. Do not add `execute`, `approve`, `broadcast`, `select latest`, `merge`, `KEEP`, or `ACT` operations to TABLElogic.
+**GENESIS 002:** pressure-test and owner-review the **already executed external `InstrumentAdapterV0`** as a real STATIC OS-contributed instrument, with source-pin closure, hostile tampering and cold re-entry. Only the owning STATIC OS project can adopt it into a boot/install distribution; no automatic adoption follows from TABLElogic CI. Retain STATIC OS ownership of session lifecycle, control history, source-byte binding, independent local admission, and cold re-entry. Do not add `approve`, `broadcast`, `select latest`, `merge`, `KEEP`, or `ACT` operations to TABLElogic.
 
 Separately test CANNON source-pinned runs with real CI and independent review. Keep proposal-time perception separate from execution-time authority.
 
