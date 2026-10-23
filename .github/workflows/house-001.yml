@@ -1,0 +1,32 @@
+name: TABLElogic House 001
+on:
+  push:
+    branches:
+      - genesis/001-five-organ-table
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  cold-house:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm test
+      - name: Strict source preview and local-only verification
+        run: |
+          node scripts/table.mjs preview fixtures/stack2-018-synthetic-summary.json /tmp/tablelogic-house-001.json
+          node scripts/table.mjs verify-view /tmp/tablelogic-house-001.json
+          if node scripts/table.mjs preview fixtures/stack2-018-synthetic-summary.json /tmp/tablelogic-house-001.json; then
+            echo "Failed: overwrote original read-only fixture" >&2
+            exit 1
+          fi
+      - name: Preserve preview artifact as unauthenticated, synthetic only
+        uses: actions/upload-artifact@v4
+        with:
+          name: tablelogic-house-001-synthetic-HOLD
+          path: /tmp/tablelogic-house-001.json

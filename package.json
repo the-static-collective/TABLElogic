@@ -1,0 +1,11 @@
+{
+  "name": "tablelogic",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Read-only five-organ encounter over original CANNON native source proofs",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "demo": "node scripts/table.mjs preview fixtures/stack2-018-synthetic-summary.json"
+  }
+}

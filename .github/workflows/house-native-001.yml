@@ -1,0 +1,100 @@
+name: TABLElogic House 001 native source rehearsal
+on:
+  push:
+    branches:
+      - genesis/001-five-organ-table
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  source-native-held-table:
+    runs-on: ubuntu-latest
+    steps:
+      - name: TABLElogic integration lens
+        uses: actions/checkout@v4
+        with:
+          path: tablelogic
+          persist-credentials: false
+      - name: Original CANNON STACK² 018 experimental native program (noncanonical branch)
+        uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/CANNON
+          ref: experiment/stack-squared-018-native-floor
+          fetch-depth: 0
+          path: cannon
+          persist-credentials: false
+      - name: Original planZ 002 SENSE
+        uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/planZ
+          ref: e8111fdb64c5587b33aece0fed639ed3d03375ac
+          path: planz
+          persist-credentials: false
+      - name: Original GHoT reference node
+        uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/GHoT
+          ref: e35dd470384d864b7b0b629a68dad570875a7df0
+          path: ghot
+          persist-credentials: false
+      - name: Original reLATTE R14
+        uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/reLATTE
+          ref: dcc8cdca84c440aa4294134f020fb7095bf87f24
+          path: relatte
+          persist-credentials: false
+      - name: Original STATIC OS Instrument Host 001
+        uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/static-os
+          ref: 8d3de9160a1f1fdffc6741712a112d34fbadf7e3
+          path: static-os
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install donor dependencies without lifecycle scripts
+        run: cd relatte && npm install --ignore-scripts --no-audit --no-fund
+      - name: Bound original donor checkouts
+        run: |
+          set -eu
+          printf '{"the-static-collective/planZ":"%s/planz","the-static-collective/CANNON":"%s/cannon","the-static-collective/GHoT":"%s/ghot","the-static-collective/reLATTE":"%s/relatte"}\n' "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE" > /tmp/tablelogic-original-roots.json
+      - name: Run CANNON's original planZ -> GHoT -> reLATTE signed HOLD ceremony
+        run: |
+          cd cannon
+          node --experimental-strip-types scripts/stack-squared-018.mjs run \
+            examples/stack-squared-018.plan.json \
+            examples/branch-loadout-008.plan.json \
+            /tmp/tablelogic-original-roots.json \
+            /tmp/tablelogic-cannon-native-018
+      - name: TABLElogic delegates cold native verification to original CANNON and builds read-only House
+        run: |
+          node tablelogic/scripts/table.mjs native-verify \
+            "$GITHUB_WORKSPACE/cannon" \
+            "$GITHUB_WORKSPACE/cannon/examples/stack-squared-018.plan.json" \
+            "$GITHUB_WORKSPACE/cannon/examples/branch-loadout-008.plan.json" \
+            /tmp/tablelogic-original-roots.json \
+            /tmp/tablelogic-cannon-native-018 \
+            /tmp/tablelogic-house-native-018.json
+          node tablelogic/scripts/table.mjs verify-view /tmp/tablelogic-house-native-018.json
+      - name: Run real STATIC OS host on the verified HOUSE read-only source
+        run: |
+          python3 tablelogic/tools/static_os_native_probe.py \
+            --house /tmp/tablelogic-house-native-018.json \
+            --static-os-root "$GITHUB_WORKSPACE/static-os" \
+            --session /tmp/tablelogic-original-os-session \
+            > /tmp/tablelogic-original-static-os-probe.json
+          python3 -c 'import json; p=json.load(open("/tmp/tablelogic-original-static-os-probe.json")); assert p["host_discoverable"] and p["first_organ"]=="planZ" and p["last_organ"]=="STATIC OS" and not p["owner_admitted"] and p["effect"]=="NONE" and not p["booted_os"]'
+      - name: Publish only redacted native report and read-only House; never signer keys
+        uses: actions/upload-artifact@v4
+        with:
+          name: tablelogic-house-001-native-held
+          path: |
+            /tmp/tablelogic-cannon-native-018/public-inspection.json
+            /tmp/tablelogic-house-native-018.json
+            /tmp/tablelogic-original-static-os-probe.json
+          if-no-files-found: error
