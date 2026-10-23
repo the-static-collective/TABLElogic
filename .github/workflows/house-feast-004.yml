@@ -1,0 +1,273 @@
+name: HOUSE 004 — The Feast Returns
+on:
+  push:
+    branches:
+      - genesis/004-feast-returns
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  native-listening:
+    runs-on: ubuntu-latest
+    steps:
+      - name: TABLElogic HOUSE 001 + 002
+        uses: actions/checkout@v4
+        with:
+          path: tablelogic
+          persist-credentials: false
+      - name: Original CANNON native 018 (experimental)
+        uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/CANNON
+          ref: experiment/stack-squared-018-native-floor
+          path: cannon
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Original planZ
+        uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/planZ
+          ref: e8111fdb64c5587b33aece0fed639ed3d03375ac
+          path: planz
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Original GHoT
+        uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/GHoT
+          ref: e35dd470384d864b7b0b629a68dad570875a7df0
+          path: ghot
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Original reLATTE
+        uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/reLATTE
+          ref: dcc8cdca84c440aa4294134f020fb7095bf87f24
+          path: relatte
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Original STATIC OS InstrumentHost
+        uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/static-os
+          ref: 8d3de9160a1f1fdffc6741712a112d34fbadf7e3
+          path: static-os
+          persist-credentials: false
+      - name: Original Workbench APERTURE
+        uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/static-workbench
+          ref: 53db559bbc510ad1003a0f8330d1673dcd04d7a0
+          path: workbench
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Original JAR;VIS local attendant
+        uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/JAR-VIS
+          ref: 20fa89a340251443afa7afbdb5432ed11fce88a6
+          path: jarvis
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Original webZ Ask JAR;VIS engine
+        uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/webZ
+          ref: b24c863903537b84bb81816fca394280743eb406
+          path: webz
+          persist-credentials: false
+      - name: Codex original public-return-002 at exact reviewed PR78 source SHA
+        uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/webZ
+          ref: 03684938fceb8ff4d614413c95634220895fa404
+          path: webz-public
+          persist-credentials: false
+      - name: GRAFT public registry
+        uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/GRAFT
+          ref: 5043bbe4a2a54d5007071c75a5bd265e5864fd14
+          path: graft
+          persist-credentials: false
+      - name: GRAFT nursery branch (public manifest ONLY)
+        uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/GRAFT
+          ref: 9de927d85af8ac62a0902040197cc583e544862a
+          path: graft-nursery
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact original reLATTE donor dependencies
+        run: cd relatte && npm install --ignore-scripts --no-audit --no-fund
+      - name: Prepare exact source roots and bounded fictional question
+        run: |
+          set -eu
+          python3 - <<'PY'
+          import os,json
+          base=os.environ['GITHUB_WORKSPACE']
+          roots={f"the-static-collective/{name}":base+'/'+folder for name,folder in [
+           ('CANNON','cannon'),('planZ','planz'),('GHoT','ghot'),('reLATTE','relatte'),
+           ('static-workbench','workbench'),('JAR-VIS','jarvis'),('webZ','webz'),
+           ('GRAFT','graft'),('GRAFT-nursery','graft-nursery'),
+           ('webZ-public-return-002','webz-public')]}
+          with open('/tmp/house-002-roots.json','w') as f: json.dump(roots,f)
+          with open('/tmp/house-002-question.txt','w') as f:
+           f.write('Could a neighborhood potluck use a public project branch to help people meet?')
+          PY
+      - name: Rehearse the original CANNON planZ-GHoT-reLATTE native HOLD
+        run: |
+          cd cannon
+          node --experimental-strip-types scripts/stack-squared-018.mjs run \
+            examples/stack-squared-018.plan.json \
+            examples/branch-loadout-008.plan.json \
+            /tmp/house-002-roots.json /tmp/house-002-cannon
+      - name: TABLElogic independent original cold verification
+        run: |
+          node tablelogic/scripts/table.mjs native-verify \
+            "$GITHUB_WORKSPACE/cannon" \
+            "$GITHUB_WORKSPACE/cannon/examples/stack-squared-018.plan.json" \
+            "$GITHUB_WORKSPACE/cannon/examples/branch-loadout-008.plan.json" \
+            /tmp/house-002-roots.json /tmp/house-002-cannon /tmp/house-002-native.json
+          node tablelogic/scripts/table.mjs verify-view /tmp/house-002-native.json
+      - name: Original STATIC OS observes five original organs
+        run: |
+          python3 -B tablelogic/tools/static_os_native_probe.py \
+            --house /tmp/house-002-native.json --static-os-root "$GITHUB_WORKSPACE/static-os" \
+            --session /tmp/house-002-os-session > /tmp/house-002-original-os.json
+      - name: Original Workbench + JAR;VIS + webZ + GRAFT listen
+        run: |
+          cd tablelogic
+          node tools/listen-native.mjs \
+            /tmp/house-002-question.txt /tmp/house-002-roots.json \
+            /tmp/house-002-native.json /tmp/house-002-listening.json
+          node scripts/verify-listening.mjs /tmp/house-002-listening.json
+          node --test test/*.test.mjs
+      - name: Privacy and no-action guarantees
+        run: |
+          python3 - <<'PY'
+          import json
+          o=json.load(open('/tmp/house-002-listening.json'))
+          assert o['external_effects']==0 and not o['real_people_consented']
+          assert o['aperture']['status']=='unresolved'
+          assert o['aperture']['readings'][0]['id']=='literal.carrier'
+          assert o['jarvis']['disposition']=='HOLD' and not o['jarvis']['user_question_matched']
+          assert not o['graft']['original_source_code_imported']
+          assert len(o['webz']['selected'])==3
+          assert not o['webz']['live_website_unchanged'] is False
+          PY
+      - name: Native JAR;VIS proposes held, question-bound review invitations
+        run: |
+          cd tablelogic
+          node tools/encounter-native.mjs run \
+            /tmp/house-002-listening.json /tmp/house-002-roots.json \
+            /tmp/house-003-encounter.json
+          node --test test/*.test.mjs
+      - name: A particular invitation gets an actual local human-review choice, not a dispatch
+        run: |
+          cd tablelogic
+          id=$(node -e 'const fs=require("node:fs");const e=JSON.parse(fs.readFileSync("/tmp/house-003-encounter.json"));console.log(e.invitations.find(x=>x.candidate_id==="graft").id)')
+          node tools/encounter-native.mjs review /tmp/house-003-encounter.json \
+            INVITE_LOCAL_REVIEW "$id" /tmp/house-003-unsigned-return.json
+          node tools/encounter-native.mjs verify-return \
+            /tmp/house-003-encounter.json /tmp/house-003-unsigned-return.json
+          if node tools/encounter-native.mjs review /tmp/house-003-encounter.json \
+            EXECUTE "$id" /tmp/forbidden-return.json; then
+            echo "False ACTION permitted" >&2
+            exit 1
+          fi
+      - name: Workbench ambiguity remains three separate readings with nine HOLD invitations
+        run: |
+          printf 'The bank moved.' > /tmp/house-003-bank.txt
+          cd tablelogic
+          node tools/listen-native.mjs /tmp/house-003-bank.txt /tmp/house-002-roots.json \
+            /tmp/house-002-native.json /tmp/house-003-bank-listening.json
+          node tools/encounter-native.mjs run /tmp/house-003-bank-listening.json \
+            /tmp/house-002-roots.json /tmp/house-003-bank-encounter.json
+          node -e 'const fs=require("node:fs");const e=JSON.parse(fs.readFileSync("/tmp/house-003-bank-encounter.json"));if(e.invitations.length!==9||e.proposal_selection!=="NONE"||!e.input.multiple_readings_preserved||e.external_effects!==0)process.exit(1)'
+      - name: Attest synthetic scope without claiming native donor permission
+        run: |
+          python3 - <<'PY'
+          import json
+          e=json.load(open('/tmp/house-003-encounter.json'))
+          r=json.load(open('/tmp/house-003-unsigned-return.json'))
+          assert e['input']['question']==e['input']['listening']['question']
+          assert len(e['invitations'])==3
+          assert all(p['disposition']=='HOLD' and p['native_jarvis_fixture_used'] for p in e['invitations'])
+          assert e['external_effects']==0 and e['requests_dispatched']==0
+          assert not e['participant_consent_observed'] and not e['public_published']
+          assert r['choice']=='INVITE_LOCAL_REVIEW' and not r['delivered']
+          PY
+      - name: Four original Codex public returns reconcile with ONE native question
+        run: |
+          cd tablelogic
+          for kind in question invitation door song; do
+            node tools/feast-native.mjs run \
+              /tmp/house-003-encounter.json /tmp/house-002-roots.json \
+              "$kind" "/tmp/house-004-$kind.json"
+            node tools/feast-native.mjs verify \
+              "/tmp/house-004-$kind.json" /tmp/house-002-roots.json
+          done
+      - name: Hostile public/private authority and original source-binding negative checks
+        run: |
+          node --input-type=module <<'JS'
+          import {readFileSync,writeFileSync} from 'node:fs';
+          const input=JSON.parse(readFileSync('/tmp/house-004-invitation.json','utf8'));
+          const forged=structuredClone(input);
+          forged.public.original_return.return.body='An edited invitation pretending to carry the source receipt.';
+          writeFileSync('/tmp/house-004-forged.json',JSON.stringify(forged));
+          const swapped=structuredClone(input);
+          swapped.native.encounter.input.question='This is not the original question.';
+          writeFileSync('/tmp/house-004-swapped.json',JSON.stringify(swapped));
+          const falseAuthority=structuredClone(input);
+          falseAuthority.crossing.external_effects=1;
+          writeFileSync('/tmp/house-004-authority.json',JSON.stringify(falseAuthority));
+          JS
+          cd tablelogic
+          for forbidden in forged swapped authority; do
+            if node tools/feast-native.mjs verify "/tmp/house-004-$forbidden.json" /tmp/house-002-roots.json; then
+              echo "FAILED: forged crossing $forbidden accepted" >&2
+              exit 1
+            fi
+          done
+      - name: Inspect genuine cross-parent evidence and original project distinctions
+        run: |
+          python3 - <<'PY'
+          import json
+          kinds=('question','invitation','door','song')
+          records=[json.load(open('/tmp/house-004-'+x+'.json')) for x in kinds]
+          assert {r['public']['kind'] for r in records}==set(kinds)
+          assert len({r['question_sha256'] for r in records})==1
+          assert len({r['native']['original_encounter_sha256'] for r in records})==1
+          for r in records:
+            assert r['state']=='HOLD_PUBLIC_AND_NATIVE'
+            assert r['crossing']['external_effects']==0
+            assert r['crossing']['public_workbench_dispatch']=='MANUAL_EXPORT_ONLY'
+            assert r['public']['original_return']['workbenchRequest']['authority']=='NONE'
+            assert r['public']['original_return']['encounter']['signal']==r['native']['encounter']['input']['question']
+            assert all(p['disposition']=='HOLD' and not p['sent'] for p in r['native']['invitations'])
+            assert not r['externally_published']
+          PY
+      - name: Export only fictional public source evidence, not native private state
+        uses: actions/upload-artifact@v4
+        with:
+          name: house-004-feast-public-and-native-HOLD
+          if-no-files-found: error
+          path: |
+            /tmp/house-002-cannon/public-inspection.json
+            /tmp/house-002-native.json
+            /tmp/house-002-original-os.json
+            /tmp/house-002-listening.json
+            /tmp/house-003-encounter.json
+            /tmp/house-003-unsigned-return.json
+            /tmp/house-003-bank-encounter.json
+            /tmp/house-004-question.json
+            /tmp/house-004-invitation.json
+            /tmp/house-004-door.json
+            /tmp/house-004-song.json
