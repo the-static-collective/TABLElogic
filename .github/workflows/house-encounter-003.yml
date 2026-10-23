@@ -171,7 +171,7 @@ jobs:
           fi
       - name: Workbench ambiguity remains three separate readings with nine HOLD invitations
         run: |
-          printf 'The bank moved.\n' > /tmp/house-003-bank.txt
+          printf 'The bank moved.' > /tmp/house-003-bank.txt
           cd tablelogic
           node tools/listen-native.mjs /tmp/house-003-bank.txt /tmp/house-002-roots.json \
             /tmp/house-002-native.json /tmp/house-003-bank-listening.json
