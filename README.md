@@ -6,6 +6,19 @@
 
 **Status:** Genesis 000 — conceptual boundary, not an integrated runtime. This repository is intentionally small. Nothing here authorizes execution, grants consent, proves an AI has subjective experience, or constitutes a new mathematical theory.
 
+## HOUSE-004 — THE FEAST RETURNS (DRAFT / HOLD)
+
+**One original Codex public question → four independently useful returns → one optional original native HOUSE inspection, all held and source-distinct.**
+
+- [Native Codex PR78 × TABLElogic HOUSE003 reconciliation and limitations](docs/HOUSE-004.md)
+- [The actual HOUSE-004 original donor workflow](.github/workflows/house-feast-004.yml)
+- [Exact original webZ public-return adapter](tools/feast-native.mjs)
+- [Question-bound pairing contract](src/feast.mjs)
+- [Optional webZ 1999 interface draft PR #79](https://github.com/the-static-collective/webZ/pull/79)
+
+**No release, merger, owner consent, real invitation, partner contact or project execution permission is inferred.** The original four public artifacts remain usable with or without TABLElogic.
+
+---
 ## HOUSE-003 — THE QUESTION GETS AN INVITATION (DRAFT / HOLD)
 
 **One exact question now generates independently held, original-JAR;VIS review possibilities.** This source-pinned native specimen preserves original Workbench readings, uses the original webZ catalog to choose three public source doors, binds every original JAR;VIS hypothetical proposal to the same question + reading + candidate, and returns an actual original JAR;VIS HOLD receipt without a steward grant. GRAFT remains a public nursery on HOLD.
