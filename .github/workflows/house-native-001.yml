@@ -80,7 +80,6 @@ jobs:
             /tmp/tablelogic-original-roots.json \
             /tmp/tablelogic-cannon-native-018 \
             /tmp/tablelogic-house-native-018.json
-            /tmp/tablelogic-original-static-os-probe.json
           node tablelogic/scripts/table.mjs verify-view /tmp/tablelogic-house-native-018.json
       - name: Run real STATIC OS host on the verified HOUSE read-only source
         run: |
@@ -97,4 +96,5 @@ jobs:
           path: |
             /tmp/tablelogic-cannon-native-018/public-inspection.json
             /tmp/tablelogic-house-native-018.json
+            /tmp/tablelogic-original-static-os-probe.json
           if-no-files-found: error
