@@ -6,6 +6,19 @@
 
 **Status:** Genesis 000 — conceptual boundary, not an integrated runtime. This repository is intentionally small. Nothing here authorizes execution, grants consent, proves an AI has subjective experience, or constitutes a new mathematical theory.
 
+## HOUSE-003 — THE QUESTION GETS AN INVITATION (DRAFT / HOLD)
+
+**One exact question now generates independently held, original-JAR;VIS review possibilities.** This source-pinned native specimen preserves original Workbench readings, uses the original webZ catalog to choose three public source doors, binds every original JAR;VIS hypothetical proposal to the same question + reading + candidate, and returns an actual original JAR;VIS HOLD receipt without a steward grant. GRAFT remains a public nursery on HOLD.
+
+- [Source, mathematical boundary and native runbook](docs/HOUSE-003.md)
+- [Original native question-to-HOLD-to-local-return CI](https://github.com/the-static-collective/TABLElogic/actions/runs/39972584845)
+- [Offline interactive invitation table](public/encounter/index.html)
+- [Exact native original-JAR;VIS question-binding runner](tools/encounter-native.mjs)
+- [Draft companion Abundent webZ invitation door](https://github.com/the-static-collective/webZ/pull/77)
+
+**This is a genuine address-bound hypothetical review pairing, NOT genuine natural-language semantic matching, an available service, verified consent, a message to another person, automatic code grafting, or a production rollout.** The native result is a portable experiment; publication is separately controlled.
+
+---
 ## HOUSE-002 — THE LISTENING TABLE (DRAFT / HOLD)
 
 **The original five-organ HOUSE-001 now receives four more independent voices.**
