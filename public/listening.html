@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; object-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'">
+<title>THE LISTENING TABLE — TABLElogic</title>
+<style>
+:root{color-scheme:dark;--gold:#e6bc75;--paper:#f7ebcf;--muted:#c2b49c;--green:#afd6b5}
+*{box-sizing:border-box}body{background:radial-gradient(ellipse at 50% -15%,#554226 0%,transparent 47%),#11100e;color:var(--paper);margin:0;font:14px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace}
+main{max-width:1060px;margin:0 auto;padding:38px 18px 90px}.kicker{color:var(--gold);letter-spacing:.24em;text-transform:uppercase;font-size:12px}
+h1{font:normal clamp(42px,8vw,76px)/.99 Georgia,serif;letter-spacing:-.05em;margin:20px 0 16px}h1 i{color:var(--gold)}
+.lede{max-width:680px;color:#ddd1ba;font-size:16px;line-height:1.75}section{border:1px solid #665839;border-radius:22px;margin-top:25px;padding:clamp(17px,4vw,30px);background:#221c14dd}
+h2{font:normal 30px Georgia,serif;margin:2px 0 14px}h3{color:var(--gold);font-size:14px;margin-bottom:6px}
+button,textarea,input{font:inherit}button{padding:11px 16px;border-radius:8px;border:1px solid var(--gold);background:#4c3b25;color:var(--paper);cursor:pointer;margin:8px 10px 8px 0}
+button:hover{background:#76522d}button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--green)}
+textarea{width:100%;max-width:100%;padding:14px;background:#15130f;color:var(--paper);border:1px solid #766448;border-radius:10px;min-height:95px;resize:vertical}
+input{max-width:100%}.caption{color:var(--muted);font-size:12px}.status{color:var(--gold);border:1px solid #a6803f;border-radius:100px;padding:4px 11px;display:inline-block}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.card{background:#302619;border:1px solid #58492f;border-radius:15px;padding:17px;min-height:145px}.card strong{font:normal 25px Georgia,serif}.card p{color:var(--muted);font-size:12px}
+.card code{color:var(--green);font-size:11px;overflow-wrap:anywhere}
+.ribbon{border-top:1px solid #665839;margin-top:22px;padding-top:18px;color:var(--muted);font-size:12px}
+@media print{body{background:white;color:black}.no-print{display:none}section{background:white;color:black;border:1px solid #888}.card{background:white;color:black}}
+</style>
+</head>
+<body>
+<main>
+<div class="kicker">TABLElogic · HOUSE 002 · 1999 underneath the stars</div>
+<h1>The <i>Listening</i> Table.</h1>
+<p class="lede">Bring a question. Leave room for the unfinished. Every suggestion remains an invitation; no person, program or organ receives permission merely by being present.</p>
+<section class="no-print" aria-label="Local question">
+<h2>01 / The question</h2>
+<p>Write a public-safe thought. This offline page does not send it anywhere. Its text box cannot run the original Workbench or JAR;VIS systems.</p>
+<textarea id="question" maxlength="260" placeholder="What could a neighborhood potluck make possible?"></textarea>
+<div><button id="export">Save a local question card</button><button id="clear">Clear</button></div>
+<p class="caption" role="status" id="notice">HOLD · No question has been sent. Contact information and private details do not belong here.</p>
+</section>
+<section class="no-print" aria-label="Bring real native evidence">
+<h2>02 / Bring an existing HOUSE-002 receipt</h2>
+<p>Load a local <code>tablelogic.listening-table/v0</code> JSON made by the source-pinned TABLElogic native rehearsal. This view cannot verify cryptographic signatures; it shows the evidence claims for human inspection.</p>
+<input id="file" type="file" accept="application/json,.json" aria-label="Local listening-table JSON">
+<button id="sample">Show a clearly fictional example</button>
+<p id="file-message" role="status" class="caption">No source loaded.</p>
+</section>
+<section aria-live="polite">
+<div class="kicker">03 / The organs assemble without owning the question</div>
+<div class="cards" id="cards">
+<article class="card"><strong>Workbench</strong><p>Signal / context / gap. No source loaded.</p></article>
+<article class="card"><strong>JAR;VIS</strong><p>Possibility without permission.</p></article>
+<article class="card"><strong>webZ</strong><p>A door, not a hidden executor.</p></article>
+<article class="card"><strong>GRAFT</strong><p>A nursery, not an incorporation order.</p></article>
+</div>
+<div class="ribbon" id="return-message">THE HOUSE TAKES ATTENDANCE · The table is set; no source has been admitted.</div>
+</section>
+<section class="no-print" aria-label="Human-only return">
+<h2>04 / Your turn</h2>
+<p>Choose a local interpretation of what you want to do next. These choices are only notes in this browser session.</p>
+<button data-decision="KEEP_AS_QUESTION">Keep as a question</button>
+<button data-decision="INSPECT_SOURCES">Inspect sources next</button>
+<button data-decision="DECLINE">Decline</button>
+<p class="caption" id="decision">No human decision recorded.</p>
+<button id="export-return">Export an unsigned local return</button>
+</section>
+<div class="ribbon">SOURCE ≠ TRUTH · POSSIBILITY ≠ PROPOSAL ≠ CONSENT · HOLD ≠ ADMIT · BRANCH ≠ LIVING CODE<br>This page has no network, accounts, backend, model inference, public upload, broadcast or external execution. The original systems run separately in a controlled native rehearsal.</div>
+</main>
+<script>
+'use strict';
+const el=id=>document.getElementById(id);let loaded=null,choice=null;
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function save(name,value){const data=new Blob([typeof value==='string'?value:JSON.stringify(value,null,2)+'\n'],{type:'application/json'});const u=URL.createObjectURL(data);const a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),300)}
+function safe(q){return q.length>=8&&q.length<=260&&!/[\u0000-\u001f\u007f]/.test(q)&&!/(?:[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|(?:\+?1[- .]?)?\(?\d{3}\)?[- .]?\d{3}[- .]?\d{4})/.test(q)}
+el('export').onclick=()=>{const q=el('question').value.trim();if(!safe(q)){el('notice').textContent='HOLD: use 8–260 characters, without contact details.';return}save('unsent-question.json',{schema:'tablelogic.unsent-question/v0',question:q,privacy:'BROWSER_LOCAL',published:false,consent_observed:false});el('notice').textContent='Local unsigned card saved. Nothing transmitted.'};
+el('clear').onclick=()=>{el('question').value='';loaded=null;choice=null;el('notice').textContent='Cleared in page memory.';el('file-message').textContent='No source loaded.';el('decision').textContent='No human decision recorded.';el('cards').textContent='No source loaded.';};
+function card(title,caption,status){return '<article class="card"><strong>'+esc(title)+'</strong><p>'+esc(caption)+'</p><code>'+esc(status)+'</code></article>'}
+function show(x,fictional=false){
+ if(!x||x.schema!=='tablelogic.listening-table/v0'||x.disposition!=='HOLD_HUMAN_REVIEW'||
+    x.external_effects!==0||x.real_people_consented!==false||x.source_owner_admission!==false||
+    x.jarvis?.disposition!=='HOLD'||x.jarvis?.externally_sent!==false||
+    x.graft?.status!=='STAGING_HOLD'||x.graft?.original_source_code_imported!==false||
+    x.webz?.live_website_unchanged!==true)throw Error('Unsafe or incompatible source record');
+ const readings=x.aperture?.readings?.map(r=>r.id).join(', ')||'none';
+ const web=x.webz?.selected?.map(r=>r.name+' '+r.status).join('; ')||'none';
+ el('cards').innerHTML=
+   card('Workbench','Original utterance: '+String(x.question).slice(0,120),'Readings: '+readings)+
+   card('JAR;VIS','Original fictional Garden fixture — NOT matched to this question','HOLD; no steward grant')+
+   card('webZ','Original public capability selector, restricted offline sources',web)+
+   card('GRAFT','Public-source nursery manifest, not imported original code','STAGING / HOLD');
+ el('return-message').textContent=fictional?'FICTIONAL DEMO · NO DONORS RAN':
+  'SOURCE-PINNED NATIVE CLAIM IN FILE · HOLD · Verify separately using the original donor workflow. Local digest is not a signature.';
+ el('file-message').textContent=fictional?'Fictional preview. Nothing verified.':'Local evidence displayed; NO signatures rechecked in browser.';
+ loaded=fictional?null:x;choice=null;el('decision').textContent='No human decision recorded.';
+}
+el('file').onchange=async e=>{try{const f=e.target.files?.[0];if(!f)return;if(f.size>256*1024)throw Error('File too large');show(JSON.parse(await f.text()))}catch(e){loaded=null;el('file-message').textContent='HOLD: '+e.message;el('cards').textContent='Source refused.'}};
+el('sample').onclick=()=>show({schema:'tablelogic.listening-table/v0',disposition:'HOLD_HUMAN_REVIEW',external_effects:0,real_people_consented:false,source_owner_admission:false,question:'Could a neighborhood potluck bring people together?',aperture:{readings:[{id:'literal.carrier'}]},jarvis:{disposition:'HOLD',externally_sent:false},graft:{status:'STAGING_HOLD',original_source_code_imported:false},webz:{live_website_unchanged:true,selected:[]}},true);
+document.querySelectorAll('[data-decision]').forEach(b=>b.onclick=()=>{choice=b.dataset.decision;el('decision').textContent='Local choice: '+choice+' (not a grant or publication).'});
+el('export-return').onclick=()=>{if(!choice){el('decision').textContent='Choose a local review action first.';return}save('unsigned-listening-return.json',{schema:'tablelogic.local-human-return/v0',choice,house_source_sha256:loaded?.local_sha256||null,source_verified_in_browser:false,consent_or_execution_granted:false,sent:false});el('decision').textContent='Unsigned local return saved: '+choice};
+</script>
+</body>
+</html>
