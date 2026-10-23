@@ -6,6 +6,27 @@
 
 **Status:** Genesis 000 — conceptual boundary, not an integrated runtime. This repository is intentionally small. Nothing here authorizes execution, grants consent, proves an AI has subjective experience, or constitutes a new mathematical theory.
 
+## Genesis 001 — THE HOUSE TAKES ATTENDANCE
+
+The first experimental five-organ composition is now **runnable** on branch \`genesis/001-five-organ-table\`.
+
+**planZ → CANNON → GHoT → reLATTE → read-only STATIC OS candidate door**
+
+- [Genesis 001 custody, proofs and runbook](docs/GENESIS-001.md)
+- [Offline HOUSE viewer](public/index.html)
+- [TABLElogic source projector](src/house.mjs) and [fixed native-verifier bridge](scripts/table.mjs)
+
+Run from a checked-out copy (Node 20+, no packages to install):
+
+\`\`\`sh
+npm test
+node scripts/table.mjs preview fixtures/stack2-018-synthetic-summary.json /tmp/tablelogic-house.json
+\`\`\`
+
+The sample is **synthetic and UNVERIFIED**. Native source verification is delegated to the original CANNON STACK² 018 program and must be run separately with pinned donor checkouts. No plan is executed, no human permission is inferred, and no STATIC OS adapter or boot is claimed.
+
+---
+
 ## Why this repository exists
 
 The Static Collective already has computational organs. The missing interface is the **encounter**: a place where independently attributable particulars can be made mutually legible without being prematurely merged into a single truth, intention, plan, or authority.
