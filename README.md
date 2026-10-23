@@ -10,11 +10,12 @@
 
 The first experimental five-organ composition is now **runnable** on branch `genesis/001-five-organ-table`.
 
-**planZ → CANNON → GHoT → reLATTE → read-only STATIC OS candidate door**
+**planZ → CANNON → GHoT → reLATTE → original STATIC OS InstrumentHost (read-only, HOLD)**
 
 - [Genesis 001 custody, proofs and runbook](docs/GENESIS-001.md)
 - [Offline HOUSE viewer](public/index.html)
-- [TABLElogic source projector](src/house.mjs) and [fixed native-verifier bridge](scripts/table.mjs)
+- [TABLElogic source projector](src/house.mjs), [fixed native-verifier bridge](scripts/table.mjs), and [original STATIC OS InstrumentHost probe](tools/static_os_native_probe.py)
+- [Successful five-owner native rehearsal, October 23](https://github.com/the-static-collective/TABLElogic/actions/runs/39964953115) — see its `tablelogic-house-001-native-held` artifact
 
 Run from a checked-out copy (Node 20+, no packages to install):
 
@@ -23,7 +24,7 @@ npm test
 node scripts/table.mjs preview fixtures/stack2-018-synthetic-summary.json /tmp/tablelogic-house.json
 ```
 
-The sample is **synthetic and UNVERIFIED**. Native source verification is delegated to the original CANNON STACK² 018 program and must be run separately with pinned donor checkouts. No plan is executed, no human permission is inferred, and no STATIC OS adapter or boot is claimed.
+The sample is **synthetic and UNVERIFIED**. Native source verification is delegated to the original CANNON STACK² 018 program and must be run separately with pinned donor checkouts. No plan is executed, no human permission is inferred, and no installed/booted STATIC OS is claimed. The separate native rehearsal **does** exercise the original STATIC OS host against an external read-only TABLElogic adapter; this is not owner adoption into an OS distribution.
 
 ---
 
