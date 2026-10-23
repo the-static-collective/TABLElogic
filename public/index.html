@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE HOUSE TAKES ATTENDANCE — TABLElogic</title>
+<style>
+:root{color-scheme:dark;--bg:#100f0c;--panel:#211d16;--ink:#f2e8d0;--muted:#aaa08e;--rule:#625843;--hold:#ffcb78;--jade:#a9dfc3}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 60% -20%,#46341e 0%,transparent 44%),var(--bg);font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--ink);min-height:100vh}
+main{max-width:990px;margin:auto;padding:clamp(22px,6vw,68px) 20px 70px}
+.eyebrow{letter-spacing:.28em;color:var(--hold);font-size:12px;text-transform:uppercase}
+h1{font-family:Georgia,serif;font-size:clamp(42px,8vw,78px);line-height:.96;font-weight:normal;max-width:780px;letter-spacing:-.04em;margin:20px 0}
+h1 span{color:var(--hold);font-style:italic}.lede{color:#d4c2a4;line-height:1.7;max-width:640px;font-size:16px}
+.rim{border:1px solid var(--rule);border-radius:28px;padding:24px;margin-top:32px;background:rgba(26,23,17,.84);box-shadow:inset 0 0 55px #362b1a55}
+.rim-title{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--rule);padding-bottom:16px}
+.tag{display:inline-block;border:1px solid var(--hold);border-radius:99px;padding:7px 12px;color:var(--hold);font-size:12px;letter-spacing:.07em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:18px}
+.card{border:1px solid #554a38;border-radius:18px;background:linear-gradient(160deg,#332a1d,#1d1a15);padding:21px;min-height:166px}
+.no{font-size:11px;color:var(--hold);letter-spacing:.2em}.card h2{font-family:Georgia,serif;font-weight:normal;font-size:27px;margin:12px 0 7px}.card p{color:var(--muted);font-size:12px;line-height:1.55}.state{font-size:11px;color:var(--jade);overflow-wrap:anywhere}
+.table{border:1px dashed #b0a17b;border-radius:999px;width:min(100%,560px);margin:28px auto 8px;padding:30px 12px;text-align:center;background:radial-gradient(ellipse,#65502b34,#16140f00 70%)}
+.table b{font-family:Georgia,serif;font-weight:normal;font-size:28px}.table p{color:var(--muted);font-size:13px}
+.control{background:var(--panel);border:1px solid var(--rule);border-radius:16px;padding:20px;margin-top:24px}
+input[type=file]{display:block;max-width:100%;margin-top:14px;color:var(--ink);font:inherit}
+button{padding:11px 16px;font:inherit;background:#5d4828;color:var(--ink);border:1px solid #a9884d;border-radius:9px;cursor:pointer;margin-top:14px}
+button:focus-visible,input:focus-visible{outline:3px solid var(--jade)}button:hover{background:#725633}
+.mini{font-size:12px;color:var(--muted);line-height:1.65}code{color:var(--jade);overflow-wrap:anywhere}
+.footer{border-top:1px solid var(--rule);padding-top:25px;margin-top:35px;color:var(--muted);font-size:12px;line-height:1.75}
+</style>
+</head>
+<body>
+<main>
+<div class="eyebrow">TABLElogic / Genesis 001 / local read-only porch</div>
+<h1>The House Takes <span>Attendance.</span></h1>
+<p class="lede">A circle around independently owned organs. A place to see what might connect—without pretending the invitation is already an agreement.</p>
+<section class="control" aria-label="Open a local House view">
+  <strong>Bring a receipt to the table</strong>
+  <p class="mini">Choose a local <code>tablelogic.house-presence/v0</code> JSON produced by the CLI. No upload, network request, permission grant, or execution occurs. This page only displays the record; it does not reverify native signatures.</p>
+  <input id="file" type="file" accept=".json,application/json" aria-label="Choose local House view JSON">
+  <button id="sample">Show a fictional table</button>
+  <p class="mini" id="message" role="status" aria-live="polite">The table is ready. No source loaded.</p>
+</section>
+<section class="rim" aria-label="Organ attendance">
+  <div class="rim-title"><strong>TABLE // FIVE ORGANS</strong><span class="tag" id="verification">NOT LOADED · HOLD</span></div>
+  <div id="cards" class="grid"></div>
+  <div class="table"><div class="eyebrow">The crossing belongs to those concerned</div><b>THE TABLE</b><p id="encounter">No invitation has been admitted.</p></div>
+  <p class="mini" id="source">No source evidence.</p>
+</section>
+<div class="footer">POSSIBILITY ≠ PROPOSAL ≠ CONSENT ≠ EXECUTION. &nbsp; · &nbsp; MAIN ≠ CANON. &nbsp; · &nbsp; RECEIVED ≠ ADMITTED.<br>
+If a source is malformed or claims owner effects, the viewer refuses to display it. A local digest is not a signature or a trust anchor. Native cryptographic and Git-object verification belongs to the original CANNON / reLATTE workflow.</div>
+</main>
+<script>
+'use strict';
+const expected=['planZ','CANNON','GHoT','reLATTE','STATIC OS'];
+const el=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const states=[
+  ['PROPOSED_ONLY','What could be considered'],
+  ['UNVERIFIED','What original sources should be checked'],
+  ['READ_ONLY_HASH_NOT_ACT','What bounded work was observed'],
+  ['RECEIVED_AND_HELD_NOT_ADMITTED','What crossed without admission'],
+  ['PROJECTION_ONLY_NOT_INSTALLED_OR_BOOTED','Where this could become inhabitable']
+];
+function display(v,demo=false){
+  if(!v||v.schema!=='tablelogic.house-presence/v0'||v.disposition!=='HOLD'||
+    v.table?.owner_effect!=='NONE'||v.table?.human_consent!=='NOT_OBSERVED'||
+    v.projection_authority!=='none'||!Array.isArray(v.roles)||v.roles.length!==5||
+    v.roles.some((r,i)=>r.organ!==expected[i])||
+    !v.roles[4].state.includes('NOT_INSTALLED_OR_BOOTED')||
+    v.table.invitations?.some(x=>x.authorized||x.executed)) throw Error('Unsafe or incompatible House projection');
+  const notice=v.verification==='NATIVE_COLD_VERIFIED'?
+    'NATIVE VERIFIED · CLAIMED IN FILE · HOLD':'UNVERIFIED · HOLD';
+  el('verification').textContent=demo?'SYNTHETIC DEMO · HOLD':notice;
+  el('cards').innerHTML=v.roles.map((r,i)=>'<article class="card"><div class="no">ORGAN 0'+(i+1)+'</div><h2>'+esc(r.organ)+'</h2><p>'+esc(r.surface||states[i][1])+'</p><div class="state">'+esc(r.state)+'</div></article>').join('');
+  el('encounter').textContent='Invitations: '+v.table.invitations.length+
+    ' · Human review required · No authorized effects.';
+  el('source').textContent=demo?'Fictional sample only — no original donors were executed.':
+    'Source reference: '+v.source?.schema+' · SHA-256 (claimed): '+(v.source?.sha256||'unknown')+
+    ' · Browser rendering alone does not verify that claim.';
+  el('message').textContent=demo?'Fictional table opened. Nothing has run.':
+    'Local file displayed. Source and receipt verification must be performed separately.';
+}
+el('file').addEventListener('change',async e=>{
+  try{const f=e.target.files?.[0];if(!f)return;if(f.size>512*1024)throw Error('File exceeds 512 KiB');
+    display(JSON.parse(await f.text()));
+  }catch(err){el('message').textContent='HOLD: '+err.message;el('cards').textContent='';}
+});
+el('sample').addEventListener('click',()=>{
+  const roles=expected.map((organ,i)=>({organ,surface:states[i][1],state:states[i][0]}));
+  display({schema:'tablelogic.house-presence/v0',disposition:'HOLD',verification:'UNVERIFIED',
+    roles,table:{owner_effect:'NONE',human_consent:'NOT_OBSERVED',
+      invitations:[{source_id:'fictional-offer',authorized:false,executed:false}]},
+    projection_authority:'none'},true);
+});
+</script>
+</body>
+</html>
