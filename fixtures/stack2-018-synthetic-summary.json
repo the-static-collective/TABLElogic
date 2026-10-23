@@ -1,0 +1,52 @@
+{
+  "schema": "cannon.stack-squared-native-summary/v0",
+  "source_records": [
+    "PLZ-TRANCH-ROOM-001",
+    "PLZ-HUMAN-SUPABARDO-001"
+  ],
+  "source_count": 2,
+  "original_git_witnesses": 5,
+  "native_planz_run": true,
+  "native_planz_frame_count": 2,
+  "native_planz_proposals": [
+    {
+      "id": "synthetic-proposal-A",
+      "chamber": "SENSE",
+      "sourcePlanIds": [
+        "PLZ-TRANCH-ROOM-001"
+      ],
+      "authority": "none",
+      "selection": "NONE"
+    },
+    {
+      "id": "synthetic-proposal-B",
+      "chamber": "SENSE",
+      "sourcePlanIds": [
+        "PLZ-HUMAN-SUPABARDO-001"
+      ],
+      "authority": "none",
+      "selection": "NONE"
+    }
+  ],
+  "native_ghot_local_system_hash": true,
+  "ghot_result_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "ghot_receipt_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "native_relatte_signed_crossing_id": "SYNTHETIC_NOT_SIGNED_crossing",
+  "native_relatte_receive_receipt_id": "SYNTHETIC_NOT_SIGNED_receive",
+  "native_relatte_hold_receipt_id": "SYNTHETIC_NOT_SIGNED_hold",
+  "signed_objects_cold_verified": 3,
+  "disposition": "HOLD",
+  "receiver_admitted": false,
+  "external_effects": 0,
+  "donor_mutations": 0,
+  "git_merges": 0,
+  "production_deployed": false,
+  "external_owner_identity_authenticated": false,
+  "nonclaims": [
+    "This is a synthetic illustration of CANNON 018 public summary shape, NOT a native execution",
+    "No actual signatures were verified for this illustrative fixture",
+    "GHoT hash is not an ACT authorization",
+    "reLATTE receipt IDs here are invented sample strings and do NOT represent real signed receipts",
+    "STATIC OS installation and boot have not occurred"
+  ]
+}
