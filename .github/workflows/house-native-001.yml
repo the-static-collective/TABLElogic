@@ -44,6 +44,13 @@ jobs:
           ref: dcc8cdca84c440aa4294134f020fb7095bf87f24
           path: relatte
           persist-credentials: false
+      - name: Original STATIC OS Instrument Host 001
+        uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/static-os
+          ref: 8d3de9160a1f1fdffc6741712a112d34fbadf7e3
+          path: static-os
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
@@ -73,7 +80,16 @@ jobs:
             /tmp/tablelogic-original-roots.json \
             /tmp/tablelogic-cannon-native-018 \
             /tmp/tablelogic-house-native-018.json
+            /tmp/tablelogic-original-static-os-probe.json
           node tablelogic/scripts/table.mjs verify-view /tmp/tablelogic-house-native-018.json
+      - name: Run real STATIC OS host on the verified HOUSE read-only source
+        run: |
+          python3 tablelogic/tools/static_os_native_probe.py \
+            --house /tmp/tablelogic-house-native-018.json \
+            --static-os-root "$GITHUB_WORKSPACE/static-os" \
+            --session /tmp/tablelogic-original-os-session \
+            > /tmp/tablelogic-original-static-os-probe.json
+          python3 -c 'import json; p=json.load(open("/tmp/tablelogic-original-static-os-probe.json")); assert p["host_discoverable"] and p["first_organ"]=="planZ" and p["last_organ"]=="STATIC OS" and not p["owner_admitted"] and p["effect"]=="NONE" and not p["booted_os"]'
       - name: Publish only redacted native report and read-only House; never signer keys
         uses: actions/upload-artifact@v4
         with:
