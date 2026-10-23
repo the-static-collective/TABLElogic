@@ -6,6 +6,27 @@
 
 **Status:** Genesis 000 — conceptual boundary, not an integrated runtime. This repository is intentionally small. Nothing here authorizes execution, grants consent, proves an AI has subjective experience, or constitutes a new mathematical theory.
 
+## HOUSE-002 — THE LISTENING TABLE (DRAFT / HOLD)
+
+**The original five-organ HOUSE-001 now receives four more independent voices.**
+
+- **Static Workbench:** original APERTURE Signal / Context / Gap; undecided text stays literal.
+- **JAR;VIS:** original fictional Garden proposal produces a real local HOLD with zero grants (not assumed relevant to the visitor).
+- **webZ:** original Ask JAR;VIS capability selector, with an explicitly offline scoped source reader.
+- **GRAFT:** original public nursery branch metadata, STAGING / HOLD; no donor code imported.
+
+Source-pinned GitHub CI reproduces HOUSE-001 first, then exercises all four original programs.
+
+- [HOUSE-002 runbook and provenance](docs/HOUSE-002.md)
+- [The local Listening Table HTML](public/listening.html)
+- [Original native listening conductor](tools/listen-native.mjs)
+- [Read-only source verification](scripts/verify-listening.mjs)
+- [Native CI proof](https://github.com/the-static-collective/TABLElogic/actions/runs/39969940247)
+- [webZ Ask JAR;VIS companion source-only PR](https://github.com/the-static-collective/webZ/pull/76)
+
+**No live site deployment, human consent, agent invocation, GRAFT admission, or OS installation is implied.**
+
+---
 ## Genesis 001 — THE HOUSE TAKES ATTENDANCE
 
 The first experimental five-organ composition is now **runnable** on branch `genesis/001-five-organ-table`.
