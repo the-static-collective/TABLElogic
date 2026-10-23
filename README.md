@@ -8,7 +8,7 @@
 
 ## Genesis 001 — THE HOUSE TAKES ATTENDANCE
 
-The first experimental five-organ composition is now **runnable** on branch \`genesis/001-five-organ-table\`.
+The first experimental five-organ composition is now **runnable** on branch `genesis/001-five-organ-table`.
 
 **planZ → CANNON → GHoT → reLATTE → read-only STATIC OS candidate door**
 
@@ -18,10 +18,10 @@ The first experimental five-organ composition is now **runnable** on branch \`ge
 
 Run from a checked-out copy (Node 20+, no packages to install):
 
-\`\`\`sh
+```sh
 npm test
 node scripts/table.mjs preview fixtures/stack2-018-synthetic-summary.json /tmp/tablelogic-house.json
-\`\`\`
+```
 
 The sample is **synthetic and UNVERIFIED**. Native source verification is delegated to the original CANNON STACK² 018 program and must be run separately with pinned donor checkouts. No plan is executed, no human permission is inferred, and no STATIC OS adapter or boot is claimed.
 
