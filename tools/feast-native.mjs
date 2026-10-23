@@ -100,7 +100,7 @@ async function run([encounterPath,rootsPath,kind,outputPath]){
    native_proposals:feast.native.invitations.length,
    exact_public_documents:seen.filter(x=>x.status==='ORIGINAL_GIT_OBJECT_INSPECTED').length,
    unavailable_documents:seen.filter(x=>x.status!=='ORIGINAL_GIT_OBJECT_INSPECTED').length,
-   native_javris_receipts_sent:0,external_effects:0
+   native_jarvis_receipts_sent:0,external_effects:0
  },null,2));
 }
 async function verify([feastPath,rootsPath]){
